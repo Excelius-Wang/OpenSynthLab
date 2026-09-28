@@ -20,7 +20,14 @@
 
 ## 快速开始
 
-从仓库安装并运行示例：
+从 [PyPI](https://pypi.org/project/opensynthlab/0.1.0a1/) 安装已发布的 Alpha 版本：
+
+```bash
+python -m pip install 'opensynthlab==0.1.0a1'
+opensynthlab --version
+```
+
+如需运行仓库中的示例或从源码安装：
 
 ```bash
 git clone https://github.com/Excelius-Wang/OpenSynthLab.git
@@ -73,6 +80,6 @@ OpenSynthLab 希望把这些步骤串成完整流程。用户可以选择内置�
 
 可以从模板合成示例开始，查看[路线图](ROADMAP.md)，或通过 [Issue](https://github.com/Excelius-Wang/OpenSynthLab/issues) 提出具体使用场景。
 
-Python 包名为 `opensynthlab`。PyPI 发布状态以 [GitHub Releases](https://github.com/Excelius-Wang/OpenSynthLab/releases) 的发布记录为准，仓库存在不代表已发布到 PyPI。
+Python 包名为 `opensynthlab`，首个 Alpha 版本已发布。版本说明和安装包见 [GitHub Releases](https://github.com/Excelius-Wang/OpenSynthLab/releases)。
 
 贡献方式见 [CONTRIBUTING.md](CONTRIBUTING.md)。项目采用 [Apache-2.0 许可证](LICENSE)。

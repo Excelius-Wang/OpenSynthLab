@@ -56,7 +56,14 @@ Training-ready datasets + provenance + run reports
 
 ## Getting started
 
-Install from the repository:
+Install the published alpha from [PyPI](https://pypi.org/project/opensynthlab/0.1.0a1/):
+
+```bash
+python -m pip install 'opensynthlab==0.1.0a1'
+opensynthlab --version
+```
+
+To run the included example or work from source:
 
 ```bash
 git clone https://github.com/Excelius-Wang/OpenSynthLab.git
@@ -84,7 +91,7 @@ write_jsonl(records, "training.jsonl")
 
 Seeds and variable choices must contain strings. Seed rows must have matching fields; seed and variable names must not overlap. Use `$$` for a literal dollar sign. Required fields default to all template fields. The default limit is 10,000 candidates **before** deduplication; oversized recipes fail rather than being silently truncated. This initial implementation holds generated records in memory.
 
-The package is named `opensynthlab`. PyPI publication status is recorded in [GitHub Releases](https://github.com/Excelius-Wang/OpenSynthLab/releases); repository availability alone does not imply a PyPI release.
+See [GitHub Releases](https://github.com/Excelius-Wang/OpenSynthLab/releases) for release notes and downloadable distributions.
 
 Follow the [roadmap](ROADMAP.md) or [open an issue](https://github.com/Excelius-Wang/OpenSynthLab/issues) with a concrete use case.
 

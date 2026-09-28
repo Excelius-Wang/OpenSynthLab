@@ -8,7 +8,7 @@ This is a proposal for implementation, not a release schedule. Milestones may ch
 - [x] Validate required fields and enforce a candidate-count limit.
 - [x] Remove exact duplicates and export JSONL without overwriting existing files.
 - [x] Provide a Python API, CLI, example recipe, and regression tests.
-- [ ] Publish the first alpha to PyPI.
+- [x] Publish the first alpha to PyPI (`0.1.0a1`).
 
 ## First usable workflow
 
