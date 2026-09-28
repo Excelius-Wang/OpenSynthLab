@@ -6,7 +6,32 @@
 
 [English](README.md) · [路线图](ROADMAP.md) · [贡献指南](CONTRIBUTING.md)
 
-> **当前状态：项目初始化。** 仓库目前只有项目定位和路线图，尚无可运行的框架，也未发布 Python 包。下文描述的是计划建设的能力。
+> **当前状态：早期 Alpha（`0.1.0a1`）。** 已实现离线模板合成，包括种子扩展、字段校验、精确去重和 JSONL 导出。模型驱动合成与 Agent 轨迹仍在规划中，接口可能调整。
+
+## 当前可用的功能
+
+- 将种子记录与独立变量的不同取值组合，保留种子中问题和答案的对应关系。
+- 用 `${变量名}` 模板生成自定义输出字段。
+- 校验必填字段、限制候选数量，并移除完全重复的记录。
+- 导出 UTF-8 JSONL；已有文件不会被覆盖，生成失败不会留下不完整的结果文件。
+- 通过 Python API 或命令行使用，要求 Python 3.10+，没有运行时第三方依赖。
+
+当前版本不调用模型或网络。模板扩展可以增加组合覆盖，但不会产生新知识，也不保证样本的语义质量。
+
+## 快速开始
+
+从仓库安装并运行示例：
+
+```bash
+git clone https://github.com/Excelius-Wang/OpenSynthLab.git
+cd OpenSynthLab
+python -m pip install .
+opensynthlab run examples/faq.json --output faq.jsonl
+```
+
+示例将两组问答与两种指令措辞组合，生成四条数据，不需要 API Key 或 GPU。输出文件必须尚不存在，其父目录必须已存在。
+
+配置与 Python API 示例见[英文说明](README.md#getting-started)。默认最多展开 10,000 条候选，数量限制在去重前计算；超过限制会报错，不会静默截断。当前版本在内存中保存生成结果。
 
 ## 我们想解决什么问题
 
@@ -46,8 +71,8 @@ OpenSynthLab 希望把这些步骤串成完整流程。用户可以选择内置�
 
 ## 如何参与
 
-实现工作尚未开始，可以先查看[路线图](ROADMAP.md)，或通过 [Issue](https://github.com/Excelius-Wang/OpenSynthLab/issues) 提出具体使用场景。
+可以从模板合成示例开始，查看[路线图](ROADMAP.md)，或通过 [Issue](https://github.com/Excelius-Wang/OpenSynthLab/issues) 提出具体使用场景。
 
-计划使用的 Python 包名是 `opensynthlab`，目前**尚未在 PyPI 发布或取得该名称**。
+Python 包名为 `opensynthlab`。PyPI 发布状态以 [GitHub Releases](https://github.com/Excelius-Wang/OpenSynthLab/releases) 的发布记录为准，仓库存在不代表已发布到 PyPI。
 
 贡献方式见 [CONTRIBUTING.md](CONTRIBUTING.md)。项目采用 [Apache-2.0 许可证](LICENSE)。

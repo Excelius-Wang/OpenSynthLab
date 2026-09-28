@@ -1,6 +1,19 @@
 # Contributing to OpenSynthLab
 
-OpenSynthLab is at the project-initialization stage. The architecture and first implementation are still being designed.
+OpenSynthLab is an early alpha. The current implementation is a small offline template synthesis pipeline; model-driven recipes and agent environments remain on the roadmap.
+
+## Local development
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e . build twine
+python -m unittest discover -s tests -v
+python -m build
+python -m twine check dist/*
+```
+
+On Windows, activate with `.venv\Scripts\Activate.ps1` in PowerShell. See [the publishing guide](docs/PUBLISHING.md) for the release process.
 
 ## Start with a concrete use case
 

@@ -1,6 +1,14 @@
 # Roadmap
 
-This is a proposal for implementation, not a list of available features or a release schedule. Milestones may change as concrete use cases are tested.
+This is a proposal for implementation, not a release schedule. Milestones may change as concrete use cases are tested. See the README and changelog for available features.
+
+## Initial alpha
+
+- [x] Implement deterministic seed/template expansion with configurable variables.
+- [x] Validate required fields and enforce a candidate-count limit.
+- [x] Remove exact duplicates and export JSONL without overwriting existing files.
+- [x] Provide a Python API, CLI, example recipe, and regression tests.
+- [ ] Publish the first alpha to PyPI.
 
 ## First usable workflow
 

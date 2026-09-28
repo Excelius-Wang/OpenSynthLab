@@ -1,0 +1,15 @@
+{
+  "seeds": [
+    {"question": "What does RAG stand for?", "answer": "Retrieval-augmented generation."},
+    {"question": "What does SFT stand for?", "answer": "Supervised fine-tuning."}
+  ],
+  "variables": {
+    "prefix": ["Answer this question:", "Please answer:"]
+  },
+  "templates": {
+    "instruction": "${prefix} ${question}",
+    "output": "${answer}"
+  },
+  "required_fields": ["instruction", "output"],
+  "max_records": 100
+}

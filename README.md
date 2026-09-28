@@ -6,7 +6,17 @@ Built-in recipes. Customizable pipelines. Quality validation.
 
 [简体中文](README.zh-CN.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
 
-> **Status: project initialization.** This repository currently contains the project direction and roadmap. There is no runnable framework or published Python package yet. All capabilities below describe the intended scope, not released features.
+> **Status: early alpha (`0.1.0a1`).** The current implementation supports offline template-based synthesis: seed expansion, validation, exact deduplication, and JSONL export. Model-driven synthesis and agent trajectories are planned, not implemented. APIs may change.
+
+## Available now
+
+- Expand seed records over independent variable combinations, preserving question/answer pairing.
+- Render configurable output fields with `${variable}` templates.
+- Validate required fields, limit candidate counts, and remove exact duplicate records.
+- Export UTF-8 JSONL atomically without overwriting existing files.
+- Use the Python API or CLI with Python 3.10+ and no runtime dependencies.
+
+This version makes no model or network calls. Template expansion increases coverage but does not add new knowledge or establish semantic correctness.
 
 ## What we are building
 
@@ -46,9 +56,37 @@ Training-ready datasets + provenance + run reports
 
 ## Getting started
 
-Implementation has not started. Follow the [roadmap](ROADMAP.md) for the proposed milestones or [open an issue](https://github.com/Excelius-Wang/OpenSynthLab/issues) with a concrete use case.
+Install from the repository:
 
-The intended Python package name is `opensynthlab`. It has **not** been published or reserved on PyPI.
+```bash
+git clone https://github.com/Excelius-Wang/OpenSynthLab.git
+cd OpenSynthLab
+python -m pip install .
+opensynthlab run examples/faq.json --output faq.jsonl
+```
+
+The example generates four instruction/answer records from two seed pairs and two phrasing variations. No API key or GPU is needed. The output path must be new and its parent directory must exist.
+
+Python API:
+
+```python
+from opensynthlab import generate, write_jsonl
+
+records = generate({
+    "seeds": [{"question": "What does SFT stand for?", "answer": "Supervised fine-tuning."}],
+    "variables": {"prefix": ["Answer:", "Please answer:"]},
+    "templates": {"instruction": "${prefix} ${question}", "output": "${answer}"},
+    "required_fields": ["instruction", "output"],
+    "max_records": 100,
+})
+write_jsonl(records, "training.jsonl")
+```
+
+Seeds and variable choices must contain strings. Seed rows must have matching fields; seed and variable names must not overlap. Use `$$` for a literal dollar sign. Required fields default to all template fields. The default limit is 10,000 candidates **before** deduplication; oversized recipes fail rather than being silently truncated. This initial implementation holds generated records in memory.
+
+The package is named `opensynthlab`. PyPI publication status is recorded in [GitHub Releases](https://github.com/Excelius-Wang/OpenSynthLab/releases); repository availability alone does not imply a PyPI release.
+
+Follow the [roadmap](ROADMAP.md) or [open an issue](https://github.com/Excelius-Wang/OpenSynthLab/issues) with a concrete use case.
 
 ## Contributing
 
